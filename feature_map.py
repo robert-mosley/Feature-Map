@@ -27,6 +27,7 @@ while True:
         break
     except Exception as e:
         print(e)
+        print("")
         pass
 
 X = data.iloc[:, :-1]
@@ -63,9 +64,12 @@ while True:
     if cmd == "Feature Importances":
         cmd = input("How many features would you like to be shown>> ")
         findfeature_importances(int(cmd))
+        print("")
     if cmd == "Univariate Selection":
         cmd = input("How many features would you like to be shown>> ")
         Univariate_Selection(int(cmd))
+        print("")
     if cmd == "Heat Map":
         cmd = input("How many features would you like to be shown>> ")
         HeatMap(int(cmd))
+        print("")
