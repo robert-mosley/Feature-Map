@@ -8,11 +8,17 @@ import seaborn as sns
 import numpy as np
 import sys
 
+print("Commands:")
+print("Feature Importances: shows a bar graph of the most important features")
+print("Univariate Selection: Uses statistical test to determine which features have the strongest correlation with output variable")
+print("Heat Map: shows a correlation heat map of all the variables and to what degree they influence each other")
+print("")
+
 while True:
     try:
         file_name = sys.argv[1]
     except:
-        file_name = input("Enter File:")
+        file_name = input("Enter File: ")
 
     try:
         data = pd.read_csv(file_name)
@@ -50,11 +56,7 @@ def HeatMap(feat_num):
     g=sns.heatmap(data[top_corr].corr(), annot=True, cmap="RdYlGn")
     plt.show()
 
-print("Commands:")
-print("Feature Importances: shows a bar graph of the most important features")
-print("Univariate Selection: Uses statistical test to determine which features have the strongest correlation with output variable")
-print("Heat Map: shows a correlation heat map of all the variables and to what degree they influence each other")
-print("")
+
 
 while True:
     cmd = input("Feature_Analyse>> ")
