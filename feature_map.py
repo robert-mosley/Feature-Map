@@ -59,7 +59,7 @@ def HeatMap(feat_num):
 
 
 while True:
-    cmd = input("Feature_Analyse>> ")
+    cmd = input("Feature_Analyse: Enter A Command>> ")
     if cmd == "Feature Importances":
         cmd = input("How many features would you like to be shown>> ")
         findfeature_importances(int(cmd))
