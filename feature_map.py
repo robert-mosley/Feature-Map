@@ -8,7 +8,12 @@ import seaborn as sns
 import numpy as np
 import sys
 
-data = pd.read_csv(sys.argv[1])
+try:
+    file_name = sys.argv[1]
+except:
+    file_name = input("Enter File:")
+
+data = pd.read_csv(file_name)
 data = data.dropna()
 data = pd.get_dummies(data)
 
