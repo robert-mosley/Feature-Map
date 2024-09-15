@@ -41,7 +41,7 @@ def findfeature_importances(feat_num):
     plt.show()
 
 def Univariate_Selection(feat_num):
-    best_score = SelectKBest(score_func=chi2, k=5)
+    best_score = SelectKBest(score_func=chi2, k=feat_num)
     x = np.abs(X)
     fit = best_score.fit(x,y)
     score = pd.DataFrame(fit.scores_)
