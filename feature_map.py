@@ -12,6 +12,7 @@ print("Commands:")
 print("Feature Importances: shows a bar graph of the most important features")
 print("Univariate Selection: Uses statistical test to determine which features have the strongest correlation with output variable")
 print("Heat Map: shows a correlation heat map of all the variables and to what degree they influence each other")
+print("Exit: quit the program")
 print("")
 
 while True:
@@ -51,10 +52,15 @@ def Univariate_Selection(feat_num):
     print(scores.nlargest(feat_num, "scores"))
 
 def HeatMap(feat_num):
-    correlation = data.corr().nlargest(feat_num, data.columns)
-    top_corr = correlation.index
+    # Fixed: Properly get correlation matrix and select top features
+    correlation_matrix = data.corr()
+    # Get the correlation with the target variable (last column)
+    target_corr = correlation_matrix.iloc[-1].abs().sort_values(ascending=False)
+    # Select top N features based on correlation with target
+    top_features = target_corr.head(feat_num).index.tolist()
+    
     plt.figure(figsize=(20,20))
-    g=sns.heatmap(data[top_corr].corr(), annot=True, cmap="RdYlGn")
+    g=sns.heatmap(data[top_features].corr(), annot=True, cmap="RdYlGn")
     plt.show()
 
 
@@ -65,11 +71,17 @@ while True:
         cmd = input("How many features would you like to be shown>> ")
         findfeature_importances(int(cmd))
         print("")
-    if cmd == "Univariate Selection":
+    elif cmd == "Univariate Selection":
         cmd = input("How many features would you like to be shown>> ")
         Univariate_Selection(int(cmd))
         print("")
-    if cmd == "Heat Map":
+    elif cmd == "Heat Map":
         cmd = input("How many features would you like to be shown>> ")
         HeatMap(int(cmd))
+        print("")
+    elif cmd == "Exit":
+        print("Exiting program...")
+        break
+    else:
+        print("Invalid command. Please try again.")
         print("")
